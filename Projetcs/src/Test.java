@@ -21,9 +21,9 @@ public class Test {
     private JPanel panel1;
     private JLabel lbl1;
 
-    public static void main(String[] args) {
+    public static void main(String[] args, ImageIcon image) {
         JFrame frame = new JFrame("Test");
-        frame.setContentPane(new Test().panel1);
+        frame.setContentPane(new Test(image).panel1);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
@@ -32,11 +32,11 @@ public class Test {
         frame.setLocation(new Random().nextInt((int)d.getWidth()), new Random().nextInt((int)d.getHeight()));
     }
 
-    public Test() {
+    public Test(ImageIcon image) {
 
-        String Url = "http://files.sharenator.com/67300.jpg";
-        ImageIcon img = getPic(Url);
-        lbl1.setIcon(img);
+//        String Url = "http://files.sharenator.com/67300.jpg";
+//        ImageIcon img = getPic(Url);
+        lbl1.setIcon(image);
 
         //lbl1.setSize(img.getIconWidth(),img.getIconHeight());
 
@@ -55,64 +55,4 @@ public class Test {
         return new ImageIcon(image);
     }
 
-//    public void JSONstuff(String code)
-//    {
-//        JSONParser parser=new JSONParser();
-//        String s = "[0,{\"1\":{\"2\":{\"3\":{\"4\":[5,{\"6\":7}]}}}}]";
-//        try{
-//            Object obj = parser.parse(s);
-//            JSONArray array = (JSONArray)obj;
-//            System.out.println("The 2nd element of array");
-//            System.out.println(array.get(1));
-//            System.out.println();
-//
-//            JSONObject obj2 = (JSONObject)array.get(1);
-//            System.out.println("Field \"1\"");
-//            System.out.println(obj2.get("1"));
-//
-//            s = "{}";
-//            obj = parser.parse(s);
-//            System.out.println(obj);
-//
-//            s= "[5,]";
-//            obj = parser.parse(s);
-//            System.out.println(obj);
-//
-//            s= "[5,,2]";
-//            obj = parser.parse(s);
-//            System.out.println(obj);
-//        }catch(ParseException pe){
-//            System.out.println("position: " + pe.getPosition());
-//            System.out.println(pe);
-//        }
-//    }
-    public String getJSON(String Url)
-    {
-        URL url;
-        InputStream is = null;
-        BufferedReader br;
-        String line;
-        String output="";
-
-        try {
-            url = new URL(Url);
-            is = url.openStream();  // throws an IOException
-            br = new BufferedReader(new InputStreamReader(is));
-
-            while ((line = br.readLine()) != null) {
-                output+=line;
-            }
-        } catch (MalformedURLException mue) {
-            mue.printStackTrace();
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-        } finally {
-            try {
-                if (is != null) is.close();
-            } catch (IOException ioe) {
-                // nothing to see here
-            }
-        }
-        return output;
-    }
 }
